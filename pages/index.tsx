@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import Head from "next/head";
 import Progressbar from "../components/Progressbar";
+import Select from "../components/Select";
 
 export default function Home() {
   const [activeBar, setActiveBar] = useState(0);
@@ -40,15 +41,8 @@ export default function Home() {
           <Progressbar min={0} max={100} value={progress2} />
         </div>
         <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
-        <div className="mx-auto max-w-md mb-8 grid justify-center">
-          <label className="sr-only" htmlFor="barSelect">
-            Pick a progress bar
-          </label>
-          <select id="barSelect" value={activeBar} onChange={handleBarChange}>
-            <option value={0}>Progress #1</option>
-            <option value={1}>Progress #2</option>
-            <option value={2}>Progress #3</option>
-          </select>
+        <div className="mx-auto max-w-md mb-8">
+          <Select activeBar={activeBar} changeHandler={handleBarChange} />
         </div>
         <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
         <div className="mx-auto max-w-md flex justify-between">
