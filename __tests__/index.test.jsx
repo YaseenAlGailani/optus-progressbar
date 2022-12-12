@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import Home from "../pages/index";
 import "@testing-library/jest-dom";
 
@@ -13,15 +13,35 @@ describe("Home", () => {
 
   it("renders three progress bars", () => {
     render(<Home />);
-     const progressBars = screen.getAllByRole("progressbar");
+    const progressBars = screen.getAllByRole("progressbar");
 
-     expect(progressBars.length).toEqual(3);
+    expect(progressBars.length).toEqual(3);
   });
 
   it("renders four buttons", () => {
     render(<Home />);
-    const buttons = screen.getAllByRole('button')
+    const buttons = screen.getAllByRole("button");
 
     expect(buttons.length).toEqual(4);
+  });
+
+  it("renders a select element", () => {
+    render(<Home />);
+    const select = screen.getByRole("combobox");
+
+    expect(select).toBeInTheDocument();
+  });
+
+  it("updates only the active bar", () => {
+    render(<Home />);
+    const select = screen.getByRole("combobox");
+    const [pb1, pb2, pb3] = screen.getAllByRole("progressbar");
+    const [m10, m25, p10, p25] = screen.getAllByRole("button");
+    fireEvent.change(select, { target: { value: 0 } });
+    fireEvent.click(p10);
+    console.log(pb1.querySelector('span').innerHTML);
+    expect(pb1.querySelector("span").innerHTML).toBe("10%");
+    expect(pb2.querySelector("span").innerHTML).toBe("0%");
+    expect(pb2.querySelector("span").innerHTML).toBe("0%");
   });
 });
