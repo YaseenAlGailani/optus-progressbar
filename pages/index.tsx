@@ -3,12 +3,17 @@ import Head from "next/head";
 import Progressbar from "../components/Progressbar";
 
 export default function Home() {
+  const [activeBar, setActiveBar] = useState(0);
   const [progress0, setProgress0] = useState(0);
+  const [progress1, setProgress1] = useState(0);
+  const [progress2, setProgress2] = useState(0);
 
   const updateProgress = (value: number) => {
     let newProgress = 0;
-    newProgress = progress0 + value;
-    setProgress0(newProgress <= 0 ? 0 : newProgress);
+    const setters = [setProgress0, setProgress1, setProgress2];
+    const values = [progress0, progress1, progress2]
+    newProgress = values[activeBar] + value;
+    setters[activeBar](newProgress <= 0 ? 0 : newProgress);
   };
 
   return (
@@ -27,6 +32,8 @@ export default function Home() {
       <main className="mx-auto px-2">
         <div className="mx-auto mb-8 max-w-md grid gap-4">
           <Progressbar min={0} max={100} value={progress0} />
+          <Progressbar min={0} max={100} value={progress1} />
+          <Progressbar min={0} max={100} value={progress2} />
         </div>
         <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
         <div className="mx-auto max-w-md flex justify-between">
