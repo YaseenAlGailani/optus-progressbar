@@ -18,7 +18,8 @@ export default function Home() {
   };
 
   const handleBarChange = (e:ChangeEvent) => {
-    setActiveBar(e.target.value);
+    const target = e.target as HTMLSelectElement;
+    setActiveBar(+target.value);
   };
 
   return (
