@@ -1,3 +1,4 @@
+import { useId } from "react";
 import { useSelect } from "downshift";
 
 export default function Select({
@@ -36,6 +37,7 @@ export default function Select({
     getItemProps,
   } = useSelect({
     items,
+    id:useId(),
     onSelectedItemChange,
     initialSelectedItem: items.find(item=>item.value === activeBar),
     itemToString(item) {
