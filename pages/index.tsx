@@ -2,6 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import Head from "next/head";
 import Progressbar from "../components/Progressbar";
 import Select from "../components/Select";
+import GLogo from "../components/GLogo";
 
 export default function Home() {
   const [activeBar, setActiveBar] = useState(0);
@@ -17,7 +18,7 @@ export default function Home() {
     setters[activeBar](newProgress <= 0 ? 0 : newProgress);
   };
 
-  const handleBarChange = (e:ChangeEvent) => {
+  const handleBarChange = (e: ChangeEvent) => {
     const target = e.target as HTMLSelectElement;
     setActiveBar(+target.value);
   };
@@ -35,7 +36,7 @@ export default function Home() {
         </h1>
       </header>
       <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
-      <main className="mx-auto px-2">
+      <main className="mx-auto px-2 mb-8">
         <div className="mx-auto mb-8 max-w-md grid gap-4">
           <Progressbar min={0} max={100} value={progress0} />
           <Progressbar min={0} max={100} value={progress1} />
@@ -45,7 +46,6 @@ export default function Home() {
         <div className="mx-auto max-w-md mb-8">
           <Select activeBar={activeBar} changeHandler={handleBarChange} />
         </div>
-        <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
         <div className="mx-auto max-w-md flex justify-between">
           <button
             className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300"
@@ -73,7 +73,15 @@ export default function Home() {
           </button>
         </div>
       </main>
-      <footer></footer>
+      <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
+      <footer className="mx-auto max-w-md">
+        <p className="texr text-sm dark:text-slate-300">
+          By Yaseen AlGailani
+          <a href="https://www.gailani.dev">
+            <GLogo small />
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }
