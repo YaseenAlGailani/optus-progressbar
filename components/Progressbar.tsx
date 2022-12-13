@@ -1,8 +1,10 @@
 export default function Progressbar({
+  label,
   value,
   max,
   min,
 }: {
+  label:string;
   value: number;
   max: number;
   min: number;
@@ -14,6 +16,7 @@ export default function Progressbar({
       aria-valuemin={min}
       aria-valuemax={max}
       aria-valuenow={value}
+      aria-label={label}
     >
       <span className="absolute font-bold dark:text-slate-100 left-[50%] -translate-x-1/2 top-1/2 -translate-y-1/2">
         {value}%

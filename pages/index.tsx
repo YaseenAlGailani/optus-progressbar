@@ -16,11 +16,43 @@ export default function Home() {
     const values = [progress0, progress1, progress2];
     newProgress = values[activeBar] + value;
     setters[activeBar](newProgress <= 0 ? 0 : newProgress);
+    updateStatus(newProgress, activeBar);
+  };
+
+  const updateStatus = (value:number, activeBar:number) => {
+    const statusDiv = getStatusDiv();
+    statusDiv.innerHTML = `Prgress bar ${activeBar+1}: ${value}%`;
   };
 
   const handleBarChange = (e: ChangeEvent) => {
     const target = e.target as HTMLSelectElement;
     setActiveBar(+target.value);
+  };
+
+  const getStatusDiv = () => {
+    let statusDiv = document.getElementById("a11y-status-message");
+    if (statusDiv) {
+      return statusDiv;
+    }
+
+    statusDiv = document.createElement("div");
+    statusDiv.setAttribute("id", "a11y-status-message");
+    statusDiv.setAttribute("role", "status");
+    statusDiv.setAttribute("aria-live", "polite");
+    statusDiv.setAttribute("aria-relevant", "additions text");
+    Object.assign(statusDiv.style, {
+      border: "0",
+      clip: "rect(0 0 0 0)",
+      height: "1px",
+      margin: "-1px",
+      overflow: "hidden",
+      padding: "0",
+      position: "absolute",
+      width: "1px",
+    });
+    document.body.appendChild(statusDiv);
+
+    return statusDiv;
   };
 
   return (
@@ -36,17 +68,32 @@ export default function Home() {
         </h1>
       </header>
       <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
-      <main className="mx-auto px-2 mb-8">
-        <div className="mx-auto mb-8 max-w-md grid gap-4">
-          <Progressbar min={0} max={100} value={progress0} />
-          <Progressbar min={0} max={100} value={progress1} />
-          <Progressbar min={0} max={100} value={progress2} />
+      <main className="mx-auto mb-8">
+        <div className="mx-auto mb-8 max-w-md grid gap-4 px-2">
+          <Progressbar
+            label="Progress bar 1"
+            min={0}
+            max={100}
+            value={progress0}
+          />
+          <Progressbar
+            label="Progress bar 2"
+            min={0}
+            max={100}
+            value={progress1}
+          />
+          <Progressbar
+            label="Progress bar 3"
+            min={0}
+            max={100}
+            value={progress2}
+          />
         </div>
         <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
-        <div className="mx-auto max-w-md mb-8">
+        <div className="mx-auto max-w-md mb-8 px-2">
           <Select activeBar={activeBar} changeHandler={handleBarChange} />
         </div>
-        <div className="mx-auto max-w-md flex justify-between">
+        <div className="mx-auto max-w-md flex justify-between px-2">
           <button
             className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
             onClick={() => updateProgress(-25)}
@@ -74,7 +121,7 @@ export default function Home() {
         </div>
       </main>
       <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
-      <footer className="mx-auto max-w-md">
+      <footer className="mx-auto max-w-md px-2">
         <p className="inline-block text-sm dark:text-slate-300">
           By Yaseen AlGailani
           <a href="https://www.gailani.dev">
