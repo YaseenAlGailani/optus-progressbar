@@ -24,9 +24,9 @@ const getStatusDiv = () => {
   return statusDiv;
 };
 
-const updateStatus = (value: number, activeBar: number) => {
+const updateStatus = (value: number, label: string) => {
   const statusDiv = getStatusDiv();
-  statusDiv.innerHTML = `Progress bar ${activeBar + 1}: ${value}%`;
+  statusDiv.innerHTML = `${label}: ${value}%`;
 };
 
 export { updateStatus };

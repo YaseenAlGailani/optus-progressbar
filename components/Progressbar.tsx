@@ -1,14 +1,29 @@
+import { useEffect, useRef } from "react";
+import { updateStatus } from "../lib/utils";
+
 export default function Progressbar({
   label,
   value,
   max,
   min,
 }: {
-  label:string;
+  label: string;
   value: number;
   max: number;
   min: number;
 }) {
+  const initialRender = useRef(true);
+
+  useEffect(() => {
+    initialRender.current = false;
+  }, []);
+
+  useEffect(() => {
+    if (initialRender.current) {
+      return;
+    }
+    updateStatus(value, label);
+  }, [value, label]);
   return (
     <div
       className="relative w-full h-12 border-4 border-neutral-200 dark:border-slate-900 bg-neutral-200 dark:bg-slate-900 rounded-full overflow-hidden"

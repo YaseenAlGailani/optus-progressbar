@@ -3,7 +3,6 @@ import Head from "next/head";
 import Progressbar from "../components/Progressbar";
 import Select from "../components/Select";
 import GLogo from "../components/GLogo";
-import { updateStatus } from "../lib/utils";
 
 export default function Home() {
   const [activeBar, setActiveBar] = useState(0);
@@ -17,7 +16,6 @@ export default function Home() {
     const values = [progress0, progress1, progress2];
     newProgress = values[activeBar] + value;
     setters[activeBar](newProgress <= 0 ? 0 : newProgress);
-    updateStatus(newProgress, activeBar);
   };
 
   const handleBarChange = (value: number) => {
