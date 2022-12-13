@@ -48,25 +48,25 @@ export default function Home() {
         </div>
         <div className="mx-auto max-w-md flex justify-between">
           <button
-            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300"
+            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
             onClick={() => updateProgress(-25)}
           >
             -25
           </button>
           <button
-            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300"
+            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
             onClick={() => updateProgress(-10)}
           >
             -10
           </button>
           <button
-            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300"
+            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
             onClick={() => updateProgress(10)}
           >
             +10
           </button>
           <button
-            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300"
+            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
             onClick={() => updateProgress(25)}
           >
             +25
@@ -75,7 +75,7 @@ export default function Home() {
       </main>
       <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
       <footer className="mx-auto max-w-md">
-        <p className="texr text-sm dark:text-slate-300">
+        <p className="inline-block text-sm dark:text-slate-300">
           By Yaseen AlGailani
           <a href="https://www.gailani.dev">
             <GLogo small />

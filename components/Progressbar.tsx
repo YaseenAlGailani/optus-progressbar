@@ -22,11 +22,12 @@ export default function Progressbar({
         width="100"
         style={{ width: `${value > max ? max : value}%` }}
         height="100"
-        className={
+        className={`transition-all
+        ${
           value > max
             ? "fill-red-400 dark:fill-red-800"
             : "fill-sky-400 dark:fill-sky-800"
-        }
+        }`}
         aria-hidden="true"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
