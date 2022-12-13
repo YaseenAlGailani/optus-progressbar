@@ -24,9 +24,8 @@ export default function Home() {
     statusDiv.innerHTML = `Prgress bar ${activeBar+1}: ${value}%`;
   };
 
-  const handleBarChange = (e: ChangeEvent) => {
-    const target = e.target as HTMLSelectElement;
-    setActiveBar(+target.value);
+  const handleBarChange = (value:number) => {
+    setActiveBar(value);
   };
 
   const getStatusDiv = () => {
