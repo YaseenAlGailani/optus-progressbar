@@ -63,30 +63,10 @@ export default function Home() {
           <Select activeBar={activeBar} changeHandler={handleBarChange} />
         </div>
         <div className="mx-auto max-w-md flex justify-between px-2">
-          <button
-            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
-            onClick={() => updateProgress(-25)}
-          >
-            -25
-          </button>
-          <button
-            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
-            onClick={() => updateProgress(-10)}
-          >
-            -10
-          </button>
-          <button
-            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
-            onClick={() => updateProgress(10)}
-          >
-            +10
-          </button>
-          <button
-            className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
-            onClick={() => updateProgress(25)}
-          >
-            +25
-          </button>
+          <Control value={-25} onClick={updateProgress} />
+          <Control value={-10} onClick={updateProgress} />
+          <Control value={+10} onClick={updateProgress} />
+          <Control value={+25} onClick={updateProgress} />
         </div>
       </main>
       <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
@@ -99,5 +79,18 @@ export default function Home() {
         </p>
       </footer>
     </div>
+  );
+}
+function Control({ value, onClick }: { value: number; onClick: Function }) {
+  return (
+    <button
+      className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
+      onClick={() => onClick(value)}
+    >
+      <span className="sr-only">
+        {value > 0 ? `Add ${Math.abs(value)}%` : `Subtract ${Math.abs(value)}%`}
+      </span>
+      <span aria-hidden={true}>{value > 0 ? `+${value}` : value}</span>
+    </button>
   );
 }
