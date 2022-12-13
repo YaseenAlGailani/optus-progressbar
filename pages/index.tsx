@@ -21,7 +21,7 @@ export default function Home() {
 
   const updateStatus = (value:number, activeBar:number) => {
     const statusDiv = getStatusDiv();
-    statusDiv.innerHTML = `Prgress bar ${activeBar+1}: ${value}%`;
+    statusDiv.innerHTML = `Progress bar ${activeBar+1}: ${value}%`;
   };
 
   const handleBarChange = (value:number) => {
