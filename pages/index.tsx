@@ -3,6 +3,7 @@ import Head from "next/head";
 import Progressbar from "../components/Progressbar";
 import Select from "../components/Select";
 import GLogo from "../components/GLogo";
+import Control from "../components/Control";
 
 export default function Home() {
   const [activeBar, setActiveBar] = useState(0);
@@ -34,7 +35,7 @@ export default function Home() {
           React Progress Bars
         </h1>
       </header>
-      <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
+      <hr className="border-neutral-200 dark:border-slate-700 mb-8" />
       <main className="mx-auto mb-8">
         <div className="mx-auto mb-8 max-w-md grid gap-4 px-2">
           <Progressbar
@@ -56,7 +57,7 @@ export default function Home() {
             value={progress2}
           />
         </div>
-        <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
+        <hr className="border-neutral-200 dark:border-slate-700 mb-8" />
         <div className="mx-auto max-w-md mb-8 px-2">
           <Select activeBar={activeBar} changeHandler={handleBarChange} />
         </div>
@@ -67,28 +68,17 @@ export default function Home() {
           <Control value={+25} onClick={updateProgress} />
         </div>
       </main>
-      <hr className="border-neutral-100 dark:border-slate-700 mb-8" />
+      <hr className="border-neutral-200 dark:border-slate-700 mb-8" />
       <footer className="mx-auto max-w-md px-2">
-        <p className="inline-block text-sm dark:text-slate-300">
-          By Yaseen AlGailani
+        <div className="flex justify-between items-center">
+          <p className="inline-block text-sm dark:text-slate-300">
+            By Yaseen AlGailani
+          </p>
           <a href="https://www.gailani.dev">
             <GLogo small />
           </a>
-        </p>
+        </div>
       </footer>
     </div>
-  );
-}
-function Control({ value, onClick }: { value: number; onClick: Function }) {
-  return (
-    <button
-      className="w-14 h-14 bg-amber-200 rounded-full hover:bg-amber-300 active:bg-amber-400 tra"
-      onClick={() => onClick(value)}
-    >
-      <span className="sr-only">
-        {value > 0 ? `Add ${Math.abs(value)}%` : `Subtract ${Math.abs(value)}%`}
-      </span>
-      <span aria-hidden={true}>{value > 0 ? `+${value}` : value}</span>
-    </button>
   );
 }
