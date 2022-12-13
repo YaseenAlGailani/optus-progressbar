@@ -37,7 +37,7 @@ export default function Select({
   } = useSelect({
     items,
     onSelectedItemChange,
-    initialSelectedItem: items[0],
+    initialSelectedItem: items.find(item=>item.value === activeBar),
     itemToString(item) {
       return item ? item.title : "";
     },
