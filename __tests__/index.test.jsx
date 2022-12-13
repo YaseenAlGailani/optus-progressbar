@@ -34,14 +34,22 @@ describe("Home", () => {
 
   it("updates only the active bar", () => {
     render(<Home />);
-    const select = screen.getByRole("combobox");
     const [pb1, pb2, pb3] = screen.getAllByRole("progressbar");
     const [m10, m25, p10, p25] = screen.getAllByRole("button");
-    fireEvent.change(select, { target: { value: 0 } });
+    
     fireEvent.click(p10);
-    console.log(pb1.querySelector('span').innerHTML);
+    console.log(pb1.querySelector("span").innerHTML);
     expect(pb1.querySelector("span").innerHTML).toBe("10%");
     expect(pb2.querySelector("span").innerHTML).toBe("0%");
     expect(pb2.querySelector("span").innerHTML).toBe("0%");
+  });
+
+  it("updates A11y status with new progress", () => {
+    render(<Home />);
+
+    const [m10, m25, p10, p25] = screen.getAllByRole("button");
+    fireEvent.click(p10);
+    const statusDiv = screen.getByRole("status");
+    expect(statusDiv.innerHTML).toBe("Progress bar 1: 10%");
   });
 });
