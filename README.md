@@ -1,4 +1,11 @@
-# Progressbar React component
+# Progressbar React Component
+
+[View deployed version](https://optus-progressbar.vercel.app/)
+
+## Notes 
+This project was implemented with accessibility in mind, following the ARIA design patterns.
+
+Thanks for viewing my project.
 
 ## Installation
 
